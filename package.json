@@ -1,0 +1,14 @@
+{
+  "name": "markdown",
+  "description": "마크다운 에디터",
+  "version": "0.0.1",
+  "main": "index.html",
+  "window": {
+    "toolbar": true
+  },
+  "dependencies": {
+	"marked": "*",
+	"diff": "*",
+	"node-webkit-fdialogs": "*"
+  }
+}
