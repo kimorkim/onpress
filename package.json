@@ -1,14 +1,64 @@
 {
-  "name": "markdown",
-  "description": "마크다운 에디터",
-  "version": "0.0.1",
-  "main": "index.html",
-  "window": {
-    "toolbar": true
+  "name": "onpress",
+  "productName": "onpress",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "lint": "eslint src"
+  },
+  "keywords": [],
+  "author": "kimor",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {},
+      "electronWinstallerConfig": {
+        "name": "onpress"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "onpress"
+      }
+    }
   },
   "dependencies": {
-	"marked": "*",
-	"diff": "*",
-	"node-webkit-fdialogs": "*"
+    "codemirror": "^5.22.2",
+    "electron-compile": "^5.1.2",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "markdown-it": "^8.2.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-react": "^6.16.0",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-prebuilt-compile": "1.4.14",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.9.0"
   }
 }
