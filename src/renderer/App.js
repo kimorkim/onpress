@@ -1,4 +1,5 @@
 import React from 'react';
+import SplitPane from 'react-split-pane';
 import Editor from './components/Editor';
 import Viewer from './components/Viewer';
 
@@ -21,15 +22,16 @@ export default class App extends React.Component {
 
   render() {
     return (
-    	<div
-    		className='appWrapper'
+    	<SplitPane
+    		direction='vertical'
+        defaultSize='50%'
     	>
       	<Editor 
       		onChange={ this.handleEditorChange }
       	/>
       	<Viewer
       		content={ this.state.content } />
-	    </div>
+	    </SplitPane>
 	   );
   }
 }

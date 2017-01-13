@@ -7,6 +7,15 @@ class Editor extends React.Component {
 		super(props);
 
 		this.handleChangeEvent = this.handleChangeEvent.bind(this);
+		this.state = {
+			// theme: 'monokai',
+		}
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log(this.props, nextProps);
+		console.log(this.state, nextState);
+		return false;
 	}
 
 	handleChangeEvent(cm) {
@@ -18,14 +27,16 @@ class Editor extends React.Component {
     	<div
     		className='editorArea'
     		ref={dom=>{
+    			console.log('dasdsa');
     			this.editor = CodeMirror(dom, {
     				lineNumbers: true,
 				    lineWrapping: true,
 				    mode: 'markdown',
+				    theme: 'twilight',
 				    // scrollbarStyle: 'null',
     			});
     			this.editor.setSize("100%", "100%");
-    			this.editor.on('change', _.debounce(this.handleChangeEvent, 300));
+    			this.editor.on('change', _.debounce(this.handleChangeEvent, 200));
     		}}
     	/>
 	   );

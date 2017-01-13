@@ -47,7 +47,8 @@
     "lodash": "^4.17.4",
     "markdown-it": "^8.2.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-split-pane": "^0.1.57"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.16.0",
