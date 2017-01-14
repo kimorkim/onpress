@@ -27,7 +27,6 @@ class Editor extends React.Component {
     	<div
     		className='editorArea'
     		ref={dom=>{
-    			console.log('dasdsa');
     			this.editor = CodeMirror(dom, {
     				lineNumbers: true,
 				    lineWrapping: true,
