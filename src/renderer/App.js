@@ -2,6 +2,7 @@ import React from 'react';
 import SplitPane from 'react-split-pane';
 import Editor from './components/Editor';
 import Viewer from './components/Viewer';
+import StyleManager from './sources/StyleManager';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -12,6 +13,8 @@ export default class App extends React.Component {
 		this.state = {
 			content: '',
 		}
+
+    // this.styleManager = new StyleManager(`.onPressViewer {${localStorage.getItem('test')}}`);
 	}
 
 	handleEditorChange(content) {

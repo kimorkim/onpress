@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import $ from 'jquery';
 
 class Editor extends React.Component {
 	constructor(props) {
@@ -8,35 +7,49 @@ class Editor extends React.Component {
 
 		this.handleChangeEvent = this.handleChangeEvent.bind(this);
 		this.state = {
-			// theme: 'monokai',
+			theme: 'twilight',
+      fontSize: 16,
 		}
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		console.log(this.props, nextProps);
-		console.log(this.state, nextState);
-		return false;
-	}
+  componentWillUpdate(nextProps, nextState) {
+    if(this.state.fontSize !== nextState.fontSize) {
+      this.setCodeMirrorStyle({
+        fontSize: `${nextState.fontSize}px`,
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.editor = CodeMirror(this.editorWrapper, {
+      lineNumbers: true,
+      lineWrapping: true,
+      mode: 'markdown',
+      theme: this.state.theme,
+    });
+    this.editor.setSize("100%", "100%");
+    this.editor.on('change', _.debounce(this.handleChangeEvent, 200));
+    this.setCodeMirrorStyle({
+      fontSize: `${this.state.fontSize}px`,
+    });
+  }
 
 	handleChangeEvent(cm) {
 		this.props.onChange(cm.getValue());
 	}
 
+  setCodeMirrorStyle(style) {
+    Object.assign(this.editor.display.wrapper.style, style);
+    this.editor.refresh();
+  }
+
   render() {
     return (
     	<div
     		className='editorArea'
-    		ref={dom=>{
-    			this.editor = CodeMirror(dom, {
-    				lineNumbers: true,
-				    lineWrapping: true,
-				    mode: 'markdown',
-				    theme: 'twilight',
-				    // scrollbarStyle: 'null',
-    			});
-    			this.editor.setSize("100%", "100%");
-    			this.editor.on('change', _.debounce(this.handleChangeEvent, 200));
-    		}}
+    		ref={ dom => {
+          this.editorWrapper = dom 
+        }}
     	/>
 	   );
   }
