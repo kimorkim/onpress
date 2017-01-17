@@ -1,6 +1,14 @@
 import { app, BrowserWindow } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+import i18n from 'i18n';
+import path from 'path';
+import setMenu from './main/appMenuManager';
 
+i18n.configure({
+  locales: ['ko', 'en'],
+  directory: path.resolve(__dirname, 'locales'),
+  register: global
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -9,6 +17,8 @@ let mainWindow;
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
 const createWindow = async () => {
+  i18n.setLocale(app.getLocale());
+  setMenu(__);
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
