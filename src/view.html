@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
+  <link rel="stylesheet" type="text/less" href="./renderer/styles/App.less">
+  <link rel="stylesheet" type="text/less" href="./renderer/styles/GFM.less">
+</head>
+<body style="overflow-y: auto; background-color: rgba(0,0,0,0); margin: 0" >
+  <div id="Viewer" class="app"></div>
+</body>
+
+<script type="text/jsx">
+import React from 'react'; 
+import ReactDOM from 'react-dom'; 
+import Viewer from './renderer/Viewer';
+
+const viewer = document.getElementById('Viewer')
+const {ipcRenderer} = require('electron')
+ipcRenderer.on('render', (e, content) => {
+  ReactDOM.render(
+    <Viewer content={content}/>,
+    viewer
+  );
+})
+</script>
+</html>

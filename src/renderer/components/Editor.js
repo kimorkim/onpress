@@ -10,6 +10,8 @@ class Editor extends React.Component {
 			theme: 'twilight',
       fontSize: 16,
 		}
+
+    this.id = 0;
 	}
 
   componentWillUpdate(nextProps, nextState) {
@@ -35,7 +37,7 @@ class Editor extends React.Component {
   }
 
 	handleChangeEvent(cm) {
-		this.props.onChange(cm.getValue());
+		this.props.onChange(cm.getValue(), this.id++);
 	}
 
   setCodeMirrorStyle(style) {

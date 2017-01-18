@@ -1,30 +1,59 @@
 import React from 'react';
-import MarkdownIt from 'markdown-it';
-import Emoji from 'markdown-it-emoji';
 
 class Viewer extends React.Component {
 	constructor(props) {
 		super(props);
-		this.md = new MarkdownIt({
-      html: true,
-      linkify: true,
-      typographer: true,
-    });
-    this.md.use(Emoji);
+		
+    this.option = {
+      nodeintegration: 'nodeintegration'
+    }
 	}
 
-	createMarkdownContent() {
-	  return {__html: this.md.render(this.props.content)};
-	}
+  componentWillReceiveProps(nextPros) {
+    this.refs.webview.send('render', nextPros.content);
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  componentDidMount() {
+    this.refs.webview.setAttribute('nodeintegration', 'nodeintegration');
+    window.w = this.refs.webview;
+    this.refs.webview.addEventListener('did-start-loading', function () {
+      console.log('로딩 시작');
+    })
+    this.refs.webview.addEventListener('did-stop-loading', function () {
+      console.log('로딩 끝');
+    })
+    this.refs.webview.addEventListener('did-fail-loading', function () {
+      console.log('오류 발생 ', arguments);
+    })
+
+    this.refs.webview.addEventListener('dom-ready', () => {
+      this.refs.webview.openDevTools()
+    })
+  }
 
   render() {
     return (
-    	<div
-    		className='onPressViewer'
-    		dangerouslySetInnerHTML={this.createMarkdownContent()}
-  		/>
-	   );
+      <webview 
+        className='onPressViewer2'
+        ref='webview'
+        src='view.html'
+      >
+      </webview>
+     );
   }
+
+  // render() {
+  //   return (
+  //   	<div
+  //   		className='onPressViewer'
+  //   		dangerouslySetInnerHTML={this.createMarkdownContent()}
+  // 		/>
+	 //   );
+  // }
 }
 
 export default Viewer

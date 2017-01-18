@@ -12,14 +12,16 @@ export default class App extends React.Component {
 
 		this.state = {
 			content: '',
+      id: -1,
 		}
 
     // this.styleManager = new StyleManager(`.onPressViewer {${localStorage.getItem('test')}}`);
 	}
 
-	handleEditorChange(content) {
+	handleEditorChange(content, id) {
 		this.setState({
-			content
+			content,
+      id
 		});
 	}
 
@@ -33,7 +35,9 @@ export default class App extends React.Component {
       		onChange={ this.handleEditorChange }
       	/>
       	<Viewer
-      		content={ this.state.content } />
+          content={ this.state.content } 
+      		id={ this.state.id } 
+        />
 	    </SplitPane>
 	   );
   }
