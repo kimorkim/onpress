@@ -1,0 +1,6 @@
+export const GlobalCallTypes = {
+  NEW_FILE: 'NEW_FILE',
+  OPEN_FILE: 'OPEN_FILE',
+  SAVE_FILE: 'SAVE_FILE',
+  MODIFY_CONTENT: 'MODIFY_CONTENT',
+}

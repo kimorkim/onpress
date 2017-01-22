@@ -3,7 +3,6 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="../node_modules/normalize.css/normalize.css">
-  <link rel="stylesheet" type="text/less" href="./renderer/styles/App.less">
   <link rel="stylesheet" type="text/less" href="./renderer/styles/GFM.less">
 </head>
 <body style="overflow-y: auto; background-color: rgba(0,0,0,0); margin: 0" >
@@ -23,11 +22,8 @@ ipcRenderer.on('render', (e, content) => {
     viewer
   );
   setTimeout(()=> {
-    console.log('!!!');
-    //이때 프로그래스 종료하는 코드 넣으면 됨!!
-  })
-  requestAnimationFrame(()=> {
-    console.log('@@@');
+    ipcRenderer.sendToHost('renderEnd');
+    ipcRenderer.send('renderEnd');
   })
 })
 </script>

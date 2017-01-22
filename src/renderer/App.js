@@ -1,7 +1,7 @@
 import React from 'react';
 import SplitPane from 'react-split-pane';
 import Editor from './components/Editor';
-import Viewer from './components/Viewer';
+import WebviewWrapper from './components/WebviewWrapper';
 import StyleManager from './sources/StyleManager';
 
 export default class App extends React.Component {
@@ -34,7 +34,7 @@ export default class App extends React.Component {
       	<Editor 
       		onChange={ this.handleEditorChange }
       	/>
-      	<Viewer
+      	<WebviewWrapper
           content={ this.state.content } 
       		id={ this.state.id } 
         />

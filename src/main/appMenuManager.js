@@ -1,12 +1,38 @@
-import { app, Menu } from 'electron';
+import { app, Menu, ipcMain, dialog } from 'electron';
+import { GlobalCallTypes, FileStatus } from '../sources/Constants';
+import Utils from '../sources/Utils';
 
-export default function setMenu(__) {
+export default function setMenu(webContents, __) {
   const template = [{
     label: __('File'),
     submenu: [{
         label: __('New File'),
+        accelerator: 'CmdOrCtrl+N',
+        click: ()=> {
+          webContents.send('GlobalCall', {
+            type: GlobalCallTypes.NEW_FILE,
+            data: '',
+          });
+        }
       }, {
-        label: __('Open File...')
+        label: __('Open File...'),
+        accelerator: 'CmdOrCtrl+O',
+        click: ()=> {
+          dialog.showOpenDialog({
+            properties: ['openFile'],
+            filters: [
+              {name: 'Markdown', extensions: ['md', 'mdown', 'markdown', 'markdn']},
+              {name: 'All Files', extensions: ['*']}
+            ]
+          }, function(filenames) {
+            if(Array.isArray(filenames)) {
+              webContents.send('GlobalCall', {
+                type: GlobalCallTypes.OPEN_FILE,
+                data: filenames[0],
+              });
+            }
+          });
+        }
       },
       // {
       //   label: __('Open Folder...')
@@ -16,9 +42,51 @@ export default function setMenu(__) {
       {
         type: 'separator'
       }, {
-        label: __('Save')
+        label: __('Save'),
+        accelerator: 'CmdOrCtrl+S',
+        click: ()=> {
+          if(global.shareObject.nowFilePath) {
+            webContents.send('GlobalCall', {
+              type: GlobalCallTypes.SAVE_FILE,
+              data: global.shareObject.nowFilePath,
+            });
+          } else {
+            dialog.showSaveDialog({
+              filters: [
+                {name: 'Markdown', extensions: ['md']},
+                {name: 'All Files', extensions: ['*']}
+              ]
+            }, (filename)=> {
+              if(filename) {
+                webContents.send('GlobalCall', {
+                  type: GlobalCallTypes.SAVE_FILE,
+                  data: filename,
+                });
+              }
+            })
+          }
+
+        }
       }, {
-        label: __('Save As...')
+        label: __('Save As...'),
+        accelerator: 'CmdOrCtrl+Shift+S',
+        click:()=> {
+          console.log(global.shareObject.nowFileName);
+          dialog.showSaveDialog({
+            defaultPath: global.shareObject.nowFileName,
+            filters: [
+              {name: 'Markdown', extensions: ['md']},
+              {name: 'All Files', extensions: ['*']}
+            ]
+          }, (filename)=> {
+            if(filename) {
+              webContents.send('GlobalCall', {
+                type: GlobalCallTypes.SAVE_FILE,
+                data: filename,
+              });
+            }
+          })
+        }
       },
       // {
       //   label: __('Save All')
@@ -26,7 +94,8 @@ export default function setMenu(__) {
       {
         type: 'separator'
       }, {
-        label: __('Exit')
+        // label: __('Exit')
+        role: 'quit'
       }
     ]
   }, {

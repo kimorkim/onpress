@@ -51,7 +51,9 @@
     "normalize.css": "^5.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-split-pane": "^0.1.57"
+    "react-split-pane": "^0.1.57",
+    "semantic-ui-css": "^2.2.4",
+    "semantic-ui-react": "^0.64.3"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.16.0",

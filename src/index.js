@@ -3,6 +3,14 @@ import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-insta
 import i18n from 'i18n';
 import path from 'path';
 import setMenu from './main/appMenuManager';
+import setIpc from './main/appIpcManager';
+
+global.shareObject = {
+  nowFilePath: '',
+  nowFileName: '',
+  mainWindowName: 'onPress',
+  defaultMainWindowName: 'onPress',
+}
 
 i18n.configure({
   locales: ['ko', 'en'],
@@ -18,13 +26,15 @@ const isDevMode = process.execPath.match(/[\\/]electron/);
 
 const createWindow = async () => {
   i18n.setLocale(app.getLocale());
-  setMenu(__);
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
   });
-
+  mainWindow.setTitle(global.shareObject.mainWindowName);
+  //setMenu
+  setMenu(mainWindow.webContents, __);
+  setIpc(mainWindow, __);
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
