@@ -62,6 +62,7 @@ class Editor extends BaseComponent {
           const textData = this.getMarkdownData();
           this.Utils.writeFile(data, textData)
           .then(()=> {
+            this.nowFilePath = data;
             this.nowUndoStack = this.editor.historySize().undo;
             ipcRenderer.send('GlobalCall', {
               type: GlobalCallTypes.MODIFY_CONTENT,
@@ -71,6 +72,12 @@ class Editor extends BaseComponent {
           .catch((err)=> {
             console.log(err);
           });
+        break;
+        case GlobalCallTypes.UNDO:
+        case GlobalCallTypes.REDO:
+        case GlobalCallTypes.SELECT_ALL:
+          console.log(data);
+          this.editor.execCommand(data);
         break;
       }
     });

@@ -71,7 +71,6 @@ export default function setMenu(webContents, __) {
         label: __('Save As...'),
         accelerator: 'CmdOrCtrl+Shift+S',
         click:()=> {
-          console.log(global.shareObject.nowFileName);
           dialog.showSaveDialog({
             defaultPath: global.shareObject.nowFileName,
             filters: [
@@ -94,7 +93,7 @@ export default function setMenu(webContents, __) {
       {
         type: 'separator'
       }, {
-        // label: __('Exit')
+        label: __('Exit'),
         role: 'quit'
       }
     ]
@@ -102,10 +101,22 @@ export default function setMenu(webContents, __) {
     label: __('Edit'),
     submenu: [{
       label: __('Undo'),
-      role: 'undo'
+      accelerator: 'CmdOrCtrl+Z',
+      click:()=> {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.UNDO,
+          data: 'undo'
+        });
+      }
     }, {
       label: __('Redo'),
-      role: 'redo'
+      accelerator: 'CmdOrCtrl+Shift+Z',
+      click:()=> {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.REDO,
+          data: 'paste'
+        });
+      }
     }, {
       type: 'separator'
     }, {
@@ -122,7 +133,13 @@ export default function setMenu(webContents, __) {
       role: 'delete'
     }, {
       label: __('Select All'),
-      role: 'selectall'
+      accelerator: 'CmdOrCtrl+A',
+      click:()=> {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.SELECT_ALL,
+          data: 'selectAll'
+        });
+      }
     }]
   }]
 
