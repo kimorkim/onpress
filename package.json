@@ -6,7 +6,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "make": "electron-forge make"
   },
   "keywords": [],
   "author": "kimor",
