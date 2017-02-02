@@ -10,12 +10,12 @@ global.shareObject = {
   nowFileName: '',
   mainWindowName: 'onPress',
   defaultMainWindowName: 'onPress',
-}
+};
 
 i18n.configure({
   locales: ['ko', 'en'],
   directory: path.resolve(__dirname, 'locales'),
-  register: global
+  register: global,
 });
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -32,7 +32,7 @@ const createWindow = async () => {
     height: 600,
   });
   mainWindow.setTitle(global.shareObject.mainWindowName);
-  //setMenu
+  // setMenu
   setMenu(mainWindow.webContents, __);
   setIpc(mainWindow, __);
   // and load the index.html of the app.

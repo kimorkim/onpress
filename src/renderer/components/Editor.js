@@ -11,14 +11,14 @@ class Editor extends BaseComponent {
     this.state = {
       theme: 'twilight',
       fontSize: 16,
-    }
+    };
 
     this.id = 0;
     this.nowUndoStack = 0;
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(this.state.fontSize !== nextState.fontSize) {
+    if (this.state.fontSize !== nextState.fontSize) {
       this.setCodeMirrorStyle({
         fontSize: `${nextState.fontSize}px`,
       });
@@ -34,51 +34,57 @@ class Editor extends BaseComponent {
       theme: this.state.theme,
     });
 
-    this.editor.setSize("100%", "100%");
+    this.editor.setSize('100%', '100%');
     this.editor.on('change', _.debounce(this.handleChangeEvent, 300));
     this.setCodeMirrorStyle({
       fontSize: `${this.state.fontSize}px`,
     });
 
     ipcRenderer.on('GlobalCall', (event, { type, data }) => {
-      switch(type) {
-        case GlobalCallTypes.NEW_FILE:
+      switch (type) {
+        case GlobalCallTypes.NEW_FILE: {
           this.setMarkdownData(data);
           this.nowFilePath = '';
           this.nowUndoStack = 0;
-        break;
-        case GlobalCallTypes.OPEN_FILE:
+          break;
+        }
+        case GlobalCallTypes.OPEN_FILE: {
           this.nowFilePath = data;
           this.Utils.readFile(data)
-          .then((data)=> {
-            this.nowUndoStack = 0;
-            this.setMarkdownData(data);
-          })
-          .catch((err)=> {
-            console.log(err);
-          });
-        break;
-        case GlobalCallTypes.SAVE_FILE:
+            .then((readData) => {
+              this.nowUndoStack = 0;
+              this.setMarkdownData(readData);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          break;
+        }
+        case GlobalCallTypes.SAVE_FILE: {
           const textData = this.getMarkdownData();
           this.Utils.writeFile(data, textData)
-          .then(()=> {
-            this.nowFilePath = data;
-            this.nowUndoStack = this.editor.historySize().undo;
-            ipcRenderer.send('GlobalCall', {
-              type: GlobalCallTypes.MODIFY_CONTENT,
-              data: false,
+            .then(() => {
+              this.nowFilePath = data;
+              this.nowUndoStack = this.editor.historySize().undo;
+              ipcRenderer.send('GlobalCall', {
+                type: GlobalCallTypes.MODIFY_CONTENT,
+                data: false,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
             });
-          })
-          .catch((err)=> {
-            console.log(err);
-          });
-        break;
+          break;
+        }
         case GlobalCallTypes.UNDO:
         case GlobalCallTypes.REDO:
-        case GlobalCallTypes.SELECT_ALL:
-          console.log(data);
+        case GlobalCallTypes.SELECT_ALL: {
           this.editor.execCommand(data);
-        break;
+          break;
+        }
+        default : {
+          break;
+        }
       }
     });
   }
@@ -88,7 +94,7 @@ class Editor extends BaseComponent {
     this.editor.clearHistory();
   }
 
-  getMarkdownData(data) {
+  getMarkdownData() {
     return this.editor.getValue();
   }
 
@@ -101,7 +107,7 @@ class Editor extends BaseComponent {
       type: GlobalCallTypes.MODIFY_CONTENT,
       data: this.isModifyContent(),
     });
-    this.props.onChange(cm.getValue(), this.id++);
+    this.props.onChange(cm.getValue(), this.id += 1);
   }
 
   setCodeMirrorStyle(style) {
@@ -113,11 +119,11 @@ class Editor extends BaseComponent {
     return (
       <div
         className='editorArea'
-        ref={ dom => {
-          this.editorWrapper = dom 
+        ref={(dom) => {
+          this.editorWrapper = dom;
         }}
       />
-     );
+    );
   }
 }
 

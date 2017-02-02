@@ -1,9 +1,35 @@
 {
   "extends": "eslint-config-airbnb",
+  "parser": "babel-eslint",
   "rules": {
     "import/extensions": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": [2, { "ignore": ["electron"] }],
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "class-methods-use-this": ["error", {
+      exceptMethods: [
+        "render",
+        "getInitialState",
+        "getDefaultProps",
+        "getChildContext",
+        "componentWillMount",
+        "componentDidMount",
+        "componentWillReceiveProps",
+        "shouldComponentUpdate",
+        "componentWillUpdate",
+        "componentDidUpdate",
+        "componentWillUnmount",
+        "Utils"
+      ],
+    }],
+  },
+  "globals": {
+    "document": true,
+    "CodeMirror": true,
+    "__": true
   }
 }

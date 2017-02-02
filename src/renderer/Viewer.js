@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import MarkdownIt from 'markdown-it';
 import Emoji from 'markdown-it-emoji';
-import StyleManager from './sources/StyleManager';
 
-export default class Viewer extends React.Component {
+class Viewer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,27 +15,26 @@ export default class Viewer extends React.Component {
   }
 
   createMarkdownContent() {
-    return {__html: this.md.render(this.props.content)};
-  }
-
-  componentWillUpdate() {
-    
-    console.log('componentWillUpdate');
-  }
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-  componentDidMount() {
-    console.log('componentDidMount');
+    return { __html: this.md.render(this.props.content) };
   }
 
   render() {
     return (
       <div
-        ref='c'
         className='onPressViewer'
         dangerouslySetInnerHTML={this.createMarkdownContent()}
       />
     );
   }
 }
+
+Viewer.propTypes = {
+  content: PropTypes.string,
+};
+
+Viewer.defaultProps = {
+  content: '',
+};
+
+
+export default Viewer;

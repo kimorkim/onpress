@@ -6,4 +6,7 @@ export const GlobalCallTypes = {
   REDO: 'REDO',
   SELECT_ALL: 'SELECT_ALL',
   MODIFY_CONTENT: 'MODIFY_CONTENT',
-}
+};
+
+const Constants = 'Constants';
+export default Constants;

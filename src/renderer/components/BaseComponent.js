@@ -1,7 +1,7 @@
 import React from 'react';
 import { remote } from 'electron';
 import path from 'path';
-import Utils from '../../sources/Utils';
+import _utils from '../../sources/Utils';
 
 class BaseComponent extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class BaseComponent extends React.Component {
   }
 
   get Utils() {
-    return Utils;
+    return _utils;
   }
 
   render() {
@@ -29,7 +29,7 @@ class BaseComponent extends React.Component {
       <div>
         BaseComponent
       </div>
-    )
+    );
   }
 }
 

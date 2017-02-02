@@ -1,9 +1,10 @@
 import Less from 'less';
+
 let styleDom;
 
 class StyleManager {
   constructor(styleText) {
-    if(styleText) {
+    if (styleText) {
       this.createStlyeDom(styleText);
     }
   }
@@ -15,8 +16,8 @@ class StyleManager {
     styleDom.type = 'text/css';
     head.appendChild(styleDom);
 
-    Less.render(styleText, function (e, output) {
-      if (styleDom.styleSheet){
+    Less.render(styleText, (e, output) => {
+      if (styleDom.styleSheet) {
         styleDom.styleSheet.cssText = output.css;
       } else {
         styleDom.appendChild(document.createTextNode(output.css));
