@@ -111,23 +111,46 @@ export default function setMenu(webContents, __) {
       click: () => {
         webContents.send('GlobalCall', {
           type: GlobalCallTypes.REDO,
-          data: 'paste',
+          data: 'redo',
         });
       },
     }, {
       type: 'separator',
     }, {
       label: __('Cut'),
-      role: 'cut',
+      accelerator: 'CmdOrCtrl+X',
+      click: () => {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.CUT,
+          data: 'cut',
+        });
+      },
     }, {
       label: __('Copy'),
-      role: 'copy',
+      accelerator: 'CmdOrCtrl+C',
+      click: () => {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.COPY,
+          data: 'copy',
+        });
+      },
     }, {
       label: __('Paste'),
-      role: 'paste',
+      accelerator: 'CmdOrCtrl+V',
+      click: () => {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.PASTE,
+          data: 'paste',
+        });
+      },
     }, {
       label: __('Delete'),
-      role: 'delete',
+      click: () => {
+        webContents.send('GlobalCall', {
+          type: GlobalCallTypes.DELETE,
+          data: 'delete',
+        });
+      },
     }, {
       label: __('Select All'),
       accelerator: 'CmdOrCtrl+A',

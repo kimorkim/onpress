@@ -33,7 +33,7 @@ class Editor extends BaseComponent {
       mode: 'markdown',
       theme: this.state.theme,
     });
-
+    window.ccc = this.editor;
     this.editor.setSize('100%', '100%');
     this.editor.on('change', _.debounce(this.handleChangeEvent, 300));
     this.setCodeMirrorStyle({
@@ -79,7 +79,16 @@ class Editor extends BaseComponent {
         case GlobalCallTypes.UNDO:
         case GlobalCallTypes.REDO:
         case GlobalCallTypes.SELECT_ALL: {
+          this.editor.focus();
           this.editor.execCommand(data);
+          break;
+        }
+        case GlobalCallTypes.CUT:
+        case GlobalCallTypes.COPY:
+        case GlobalCallTypes.PASTE:
+        case GlobalCallTypes.DELETE: {
+          this.editor.focus();
+          document.execCommand(data);
           break;
         }
         default : {
