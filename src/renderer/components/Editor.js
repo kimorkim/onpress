@@ -33,7 +33,6 @@ class Editor extends BaseComponent {
       mode: 'markdown',
       theme: this.state.theme,
     });
-    window.ccc = this.editor;
     this.editor.setSize('100%', '100%');
     this.editor.on('change', _.debounce(this.handleChangeEvent, 300));
     this.setCodeMirrorStyle({
