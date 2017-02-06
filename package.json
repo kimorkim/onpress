@@ -7,6 +7,10 @@
   "scripts": {
     "start": "electron-forge start",
     "lint": "eslint src",
+    "comp": "export NODE_ENV=production&&electron-compile src",
+    "comp:win": "set NODE_ENV=production&&electron-compile src",
+    "pack": "export NODE_ENV=production&&electron-forge package",
+    "pack:win": "set NODE_ENV=production&&electron-forge package",
     "make": "electron-forge make"
   },
   "keywords": [],
@@ -42,8 +46,10 @@
     }
   },
   "dependencies": {
+    "babel-runtime": "^6.22.0",
     "codemirror": "^5.22.2",
     "electron-compile": "^5.1.2",
+    "electron-devtools-installer": "^2.0.1",
     "i18n": "^0.8.3",
     "less": "^2.7.2",
     "lodash": "^4.17.4",
@@ -61,7 +67,7 @@
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.16.0",
-    "electron-devtools-installer": "^2.0.1",
+    "electron-compilers": "^5.4.0",
     "electron-prebuilt-compile": "1.4.14",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
