@@ -11,7 +11,8 @@
               }
             }
           ],
-          "react"
+          "react",
+          "babili"
         ],
         "plugins": [
           "transform-async-to-generator"
@@ -30,7 +31,8 @@
               }
             }
           ],
-          "react"
+          "react",
+          "babili"
         ],
         "plugins": [
           "transform-async-to-generator"

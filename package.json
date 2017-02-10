@@ -9,8 +9,10 @@
     "lint": "eslint src",
     "comp": "export NODE_ENV=production&&electron-compile src",
     "comp:win": "set NODE_ENV=production&&electron-compile src",
+    "comp:wind": "set DEBUG=*,-babel&&set NODE_ENV=production&&electron-compile src",
     "pack": "export NODE_ENV=production&&electron-forge package",
     "pack:win": "set NODE_ENV=production&&electron-forge package",
+    "pack:wind": "set DEBUG=*,-babel&&set NODE_ENV=production&&electron-forge package",
     "make": "electron-forge make"
   },
   "keywords": [],
@@ -65,6 +67,7 @@
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-preset-babili": "0.0.10",
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.16.0",
     "electron-compilers": "^5.4.0",
