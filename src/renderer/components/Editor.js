@@ -9,8 +9,8 @@ class Editor extends BaseComponent {
 
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
     this.state = {
-      theme: 'twilight',
-      fontSize: 16,
+      theme: 'one-dark',
+      fontSize: 14,
     };
 
     this.id = 0;
@@ -28,12 +28,16 @@ class Editor extends BaseComponent {
   componentDidMount() {
     this.editor = CodeMirror(this.editorWrapper, {
       historyEventDelay: 300,
+      styleActiveLine: true,
+      styleSelectiveLine: true,
       lineNumbers: true,
       lineWrapping: true,
       mode: 'markdown',
       theme: this.state.theme,
     });
     this.editor.setSize('100%', '100%');
+    this.editor.setOption("styleActiveLine", {nonEmpty: true});
+    this.editor.setOption("styleSelectiveLine", {nonEmpty: true});
     this.editor.on('change', _.debounce(this.handleChangeEvent, 300));
     this.setCodeMirrorStyle({
       fontSize: `${this.state.fontSize}px`,
