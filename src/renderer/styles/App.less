@@ -1,9 +1,7 @@
-html {
+html, body, .app {
   margin: 0;
-}
-
-body {
-  margin: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .app {
@@ -13,8 +11,8 @@ body {
     height: 100%;
   }
 
-  .SplitPane .Pane {  
-    overflow-y: auto;
+  .SplitPane .Pane {
+    overflow-y: hidden;
   }
 
   .webviewWrapper {
@@ -24,6 +22,17 @@ body {
     .webviewWrapper-webview {
       flex: 1;
     }
+  }
+
+  .previewLeft {
+    width: 50%;
+    height: 100%;
+    background-color: #282c34;
+  }
+  .previewRight {
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
   }
 }
 
@@ -70,7 +79,6 @@ body {
   border-left: 5px solid rgba(0, 0, 0, 0.5);
   border-right: 5px solid rgba(0, 0, 0, 0.5);
 }
-
 
 .loadingWrapper {
   position: absolute;
