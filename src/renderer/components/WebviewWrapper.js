@@ -1,5 +1,4 @@
 import React from 'react';
-import { Dimmer, Loader } from 'semantic-ui-react';
 import BaseComponent from './BaseComponent';
 
 class WebViewWrapper extends BaseComponent {
@@ -50,9 +49,6 @@ class WebViewWrapper extends BaseComponent {
       <div
         className='webviewWrapper'
       >
-        <Dimmer inverted active={this.state.isLoaderActive}>
-          <Loader size='massive' />
-        </Dimmer>
         <webview
           className='webviewWrapper-webview'
           ref={(webview) => {

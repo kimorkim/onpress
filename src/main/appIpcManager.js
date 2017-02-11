@@ -2,6 +2,12 @@ import { ipcMain } from 'electron';
 import { GlobalCallTypes } from '../sources/Constants';
 
 export default function setIpc(mainWindow, __) {
+  const startTime = new Date();
+
+  ipcMain.on('RunningTime', (event) => {
+    console.log(new Date() - startTime);
+  });
+
   ipcMain.on('GlobalCall', (event, { type, data }) => {
     switch (type) {
       case GlobalCallTypes.MODIFY_CONTENT: {

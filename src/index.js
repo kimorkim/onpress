@@ -5,7 +5,7 @@ import path from 'path';
 import setMenu from './main/appMenuManager';
 import setIpc from './main/appIpcManager';
 import { handleStartupEvent } from './main/appStartupManager';
-
+const startTime = new Date();
 global.shareObject = {
   nowFilePath: '',
   nowFileName: '',
@@ -27,12 +27,12 @@ const isDevMode = process.execPath.match(/[\\/]electron/);
 
 const createWindow = async () => {
   i18n.setLocale(app.getLocale());
-  
+
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
   });
-  
+
   mainWindow.setTitle(global.shareObject.mainWindowName);
 
   setMenu(mainWindow.webContents, __);
@@ -44,6 +44,10 @@ const createWindow = async () => {
     await installExtension(REACT_DEVELOPER_TOOLS);
     mainWindow.webContents.openDevTools();
   }
+
+  mainWindow.on('ready-to-show', () => {
+    console.log('ready', new Date() - startTime);
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
