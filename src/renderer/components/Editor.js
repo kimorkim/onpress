@@ -36,8 +36,6 @@ class Editor extends BaseComponent {
       theme: this.state.theme,
     });
     this.editor.setSize('100%', '100%');
-    this.editor.setOption("styleActiveLine", {nonEmpty: true});
-    this.editor.setOption("styleSelectiveLine", {nonEmpty: true});
     this.editor.on('change', _.debounce(this.handleChangeEvent, 300));
     this.setCodeMirrorStyle({
       fontSize: `${this.state.fontSize}px`,
@@ -59,7 +57,7 @@ class Editor extends BaseComponent {
               this.setMarkdownData(readData);
             })
             .catch((err) => {
-              console.log(err);
+              console.error(err);
             });
           break;
         }
@@ -75,7 +73,7 @@ class Editor extends BaseComponent {
               });
             })
             .catch((err) => {
-              console.log(err);
+              console.error(err);
             });
           break;
         }

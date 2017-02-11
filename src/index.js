@@ -1,11 +1,19 @@
-import { app, BrowserWindow } from 'electron';
-import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+import {
+  app,
+  BrowserWindow,
+} from 'electron';
+import installExtension, {
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer';
 import i18n from 'i18n';
 import path from 'path';
 import setMenu from './main/appMenuManager';
 import setIpc from './main/appIpcManager';
-import { handleStartupEvent } from './main/appStartupManager';
-const startTime = new Date();
+import {
+  handleStartupEvent,
+} from './main/appStartupManager';
+
+// const startTime = new Date();
 global.shareObject = {
   nowFilePath: '',
   nowFileName: '',
@@ -44,10 +52,6 @@ const createWindow = async () => {
     await installExtension(REACT_DEVELOPER_TOOLS);
     mainWindow.webContents.openDevTools();
   }
-
-  mainWindow.on('ready-to-show', () => {
-    console.log('ready', new Date() - startTime);
-  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;

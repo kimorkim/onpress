@@ -39,9 +39,20 @@ class WebViewWrapper extends BaseComponent {
         });
       }
     });
+
     this.webview.addEventListener('dom-ready', () => {
       // this.webview.openDevTools();
     });
+  }
+
+  createLoadingWrapperClassName() {
+    let activeName = 'active';
+
+    if (!this.state.isLoaderActive) {
+      activeName = 'inactive';
+    }
+
+    return `loadingWrapper ${activeName}`;
   }
 
   render() {
@@ -49,28 +60,26 @@ class WebViewWrapper extends BaseComponent {
       <div
         className='webviewWrapper'
       >
-        { this.state.isLoaderActive && (
+        <div
+          className={this.createLoadingWrapperClassName()}
+        >
           <div
-            className='loadingWrapper'
+            className='sk-folding-cube'
           >
             <div
-              className='sk-folding-cube'
-            >
-              <div
-                className='sk-cube1 sk-cube'
-              />
-              <div
-                className='sk-cube2 sk-cube'
-              />
-              <div
-                className='sk-cube4 sk-cube'
-              />
-              <div
-                className='sk-cube3 sk-cube'
-              />
-            </div>
+              className='sk-cube1 sk-cube'
+            />
+            <div
+              className='sk-cube2 sk-cube'
+            />
+            <div
+              className='sk-cube4 sk-cube'
+            />
+            <div
+              className='sk-cube3 sk-cube'
+            />
           </div>
-        )}
+        </div>
         <webview
           className='webviewWrapper-webview'
           ref={(webview) => {

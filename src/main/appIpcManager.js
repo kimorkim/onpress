@@ -4,7 +4,7 @@ import { GlobalCallTypes } from '../sources/Constants';
 export default function setIpc(mainWindow, __) {
   const startTime = new Date();
 
-  ipcMain.on('RunningTime', (event) => {
+  ipcMain.on('RunningTime', () => {
     console.log(new Date() - startTime);
   });
 
