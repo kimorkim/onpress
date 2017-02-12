@@ -34,7 +34,9 @@
       },
       "electronPackagerConfig": {},
       "electronWinstallerConfig": {
-        "name": "onpress"
+        "name": "onpress",
+        "authors": "kimorkim",
+        "setupIcon": "./src/image/app.ico"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
