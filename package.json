@@ -1,6 +1,6 @@
 {
-  "name": "onpress",
-  "productName": "onpress",
+  "name": "onPress",
+  "productName": "onPress",
   "version": "0.1.0",
   "description": "My Electron application description",
   "main": "src/index.js",
@@ -16,7 +16,7 @@
     "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "kimor",
+  "author": "kimorkim",
   "license": "MIT",
   "config": {
     "forge": {
@@ -32,10 +32,14 @@
           "rpm"
         ]
       },
-      "electronPackagerConfig": {},
+      "electronPackagerConfig": {
+        "icon": "src/image/app",
+        "asar": true
+      },
       "electronWinstallerConfig": {
-        "name": "onpress",
+        "name": "onPress",
         "authors": "kimorkim",
+        "iconUrl": "https://raw.githubusercontent.com/kimorkim/onPress/master/src/image/app.ico",
         "setupIcon": "./src/image/app.ico"
       },
       "electronInstallerDebian": {},
@@ -45,7 +49,7 @@
       },
       "windowsStoreConfig": {
         "packageName": "",
-        "name": "onpress"
+        "name": "onPress"
       }
     }
   },
