@@ -46,6 +46,12 @@
     var range = ranges[0];
     var lineCount = Math.abs(range.anchor.line - range.head.line);
     var startLine = Math.min(range.anchor.line, range.head.line);
+    var endRange = (range.anchor.line > range.head.line) ? range.anchor : range.head;
+
+    if(endRange.ch > 0) {
+      lineCount++;
+    }
+
     for (var i = 0; i < lineCount; i++) {
       var line = cm.getLineHandleVisualStart(startLine + i);
       if (active[active.length - 1] != line) active.push(line);
