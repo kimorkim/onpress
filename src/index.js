@@ -1,6 +1,7 @@
 import {
   app,
   BrowserWindow,
+  shell
 } from 'electron';
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
@@ -67,6 +68,19 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
+  }
+});
+
+app.on('web-contents-created', (event, contents) => {
+  if (contents.getType() == 'webview') {
+    contents.on('will-navigate', (event, url) => {
+      event.preventDefault()
+      shell.openExternal(url)
+    });
+    contents.on('new-window', (event, url) => {
+      event.preventDefault();
+      shell.openExternal(url);
+    });
   }
 });
 

@@ -14,9 +14,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Viewer from './renderer/Viewer';
+import {ipcRenderer} from 'electron';
 
-const viewer = document.getElementById('Viewer')
-const {ipcRenderer} = require('electron')
+const viewer = document.getElementById('Viewer');
+
 ipcRenderer.on('render', (e, content) => {
   ReactDOM.render(
     <Viewer content={content}/>,
