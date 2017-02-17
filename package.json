@@ -34,10 +34,18 @@
       },
       "electronPackagerConfig": {
         "icon": "src/image/app",
-        "asar": true
+        "asar": true,
+        "win32metadata": {
+          "CompanyName": "kimorkim",
+          "FileDescription": "Markdown Editor",
+          "OriginalFilename": "onPress.exe",
+          "ProductName": "onPress",
+          "InternalName": "onPress"
+        }
       },
       "electronWinstallerConfig": {
         "name": "onPress",
+        "exe": "onPress.exe",
         "authors": "kimorkim",
         "iconUrl": "https://raw.githubusercontent.com/kimorkim/onPress/master/src/image/app.ico",
         "setupIcon": "./src/image/app.ico"
@@ -66,9 +74,7 @@
     "normalize.css": "^5.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-split-pane": "^0.1.57",
-    "semantic-ui-css": "^2.2.4",
-    "semantic-ui-react": "^0.64.3"
+    "react-split-pane": "^0.1.57"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

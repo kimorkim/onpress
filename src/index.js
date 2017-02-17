@@ -58,11 +58,6 @@ const createWindow = async () => {
   });
 };
 
-if (!handleStartupEvent()) {
-  app.on('ready', createWindow);
-}
-
-// Quit when all windows are closed.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -74,3 +69,19 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+function main() {
+  try {
+    if (!handleStartupEvent()) {
+      app.on('ready', createWindow);
+    } else {
+      app.quit(0);
+    }
+  } catch(e) {
+    console.error(e);
+    app.quit(0);
+    process.exit(0);
+  }
+}
+
+main();
