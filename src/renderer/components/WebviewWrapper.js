@@ -41,7 +41,7 @@ class WebViewWrapper extends BaseComponent {
     });
 
     this.webview.addEventListener('dom-ready', () => {
-      // this.webview.openDevTools();
+      this.webview.openDevTools();
     });
   }
 
