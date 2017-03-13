@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
+    "debug": "set DEBUG=*,-babel&&electron-forge start",
     "lint": "eslint src",
     "comp": "export NODE_ENV=production&&electron-compile src",
     "comp:win": "set NODE_ENV=production&&electron-compile src",
@@ -62,14 +63,14 @@
     }
   },
   "dependencies": {
-    "babel-runtime": "^6.22.0",
-    "codemirror": "^5.22.2",
-    "electron-compile": "^5.1.2",
+    "babel-runtime": "^6.23.0",
+    "codemirror": "^5.24.2",
+    "electron-compile": "^6.1.2",
     "electron-devtools-installer": "^2.0.1",
     "i18n": "^0.8.3",
     "less": "^2.7.2",
     "lodash": "^4.17.4",
-    "markdown-it": "^8.2.2",
+    "markdown-it": "^8.3.0",
     "markdown-it-emoji": "^1.3.0",
     "normalize.css": "^5.0.0",
     "react": "^15.4.2",
@@ -81,13 +82,13 @@
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-preset-babili": "0.0.10",
     "babel-preset-env": "^1.1.8",
-    "babel-preset-react": "^6.16.0",
-    "electron-compilers": "^5.4.0",
-    "electron-prebuilt-compile": "1.4.14",
-    "eslint": "^3.13.1",
+    "babel-preset-react": "^6.23.0",
+    "electron-compilers": "^5.5.1",
+    "electron-prebuilt-compile": "^1.4.15",
+    "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0"
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0"
   }
 }
