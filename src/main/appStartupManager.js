@@ -31,7 +31,6 @@ export function handleStartupEvent() {
     case '--squirrel-install':
     case '--squirrel-updated':
       spawnUpdate(['--createShortcut', exeName]);
-
       setTimeout(app.quit, 1000);
       return true;
 
