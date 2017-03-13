@@ -86,7 +86,7 @@
     "babel-preset-env": "^1.1.8",
     "babel-preset-react": "^6.23.0",
     "electron-compilers": "^5.5.1",
-    "electron-prebuilt-compile": "^1.4.15",
+    "electron-prebuilt-compile": "1.4.14",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
