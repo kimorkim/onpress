@@ -48,18 +48,19 @@
             'name': 'onPress',
             'title': 'onPress',
             'contents': [{
-                'x': 240,
-                'y': 380,
+                'x': 460,
+                'y': 180,
                 'type': 'link',
                 'path': '/Applications'
             }, {
-                'x': 240,
-                'y': 120,
+                'x': 140,
+                'y': 180,
                 'type': 'file',
                 'path': path.resolve(__dirname, 'out', 'onPress-darwin-x64', 'onPress.app'),
             }],
             'icon': './src/image/app.icns',
-            'icon-size': 80
+            'background': './src/image/background.png',
+            'icon-size': 120
         }
     };
 }(module));
