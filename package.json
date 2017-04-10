@@ -1,7 +1,7 @@
 {
   "name": "onPress",
   "productName": "onPress",
-  "version": "0.1.0",
+  "version": "v0.1.0",
   "description": "My Electron application description",
   "main": "src/index.js",
   "scripts": {
@@ -22,48 +22,7 @@
   "author": "kimorkim",
   "license": "MIT",
   "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "icon": "src/image/app",
-        "asar": true,
-        "win32metadata": {
-          "CompanyName": "kimorkim",
-          "FileDescription": "Markdown Editor",
-          "OriginalFilename": "onPress.exe",
-          "ProductName": "onPress",
-          "InternalName": "onPress"
-        }
-      },
-      "electronWinstallerConfig": {
-        "name": "onPress",
-        "exe": "onPress.exe",
-        "authors": "kimorkim",
-        "iconUrl": "https://raw.githubusercontent.com/kimorkim/onPress/master/src/image/app.ico",
-        "setupIcon": "./src/image/app.ico",
-        "loadingGif": "./src/image/onPress.gif"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": ""
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "onPress"
-      }
-    }
+    "forge": "./forge.config.js"
   },
   "dependencies": {
     "babel-runtime": "6.23.0",
