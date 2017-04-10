@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 import BaseComponent, { GlobalCallTypes } from './BaseComponent';
 
 class Editor extends BaseComponent {
@@ -65,11 +65,15 @@ class Editor extends BaseComponent {
           const textData = this.getMarkdownData();
           this.Utils.writeFile(data, textData)
             .then(() => {
+              const currentWindowId = remote.getCurrentWindow().id;
               this.nowFilePath = data;
               this.nowUndoStack = this.editor.historySize().undo;
               ipcRenderer.send('GlobalCall', {
                 type: GlobalCallTypes.MODIFY_CONTENT,
-                data: false,
+                data: {
+                  isModify: false,
+                  windowId: currentWindowId,
+                },
               });
             })
             .catch((err) => {
@@ -113,9 +117,13 @@ class Editor extends BaseComponent {
   }
 
   handleChangeEvent(cm) {
+    const currentWindowId = remote.getCurrentWindow().id;
     ipcRenderer.send('GlobalCall', {
       type: GlobalCallTypes.MODIFY_CONTENT,
-      data: this.isModifyContent(),
+      data: {
+        isModify: this.isModifyContent(),
+        windowId: currentWindowId,
+      },
     });
     this.props.onChange(cm.getValue(), this.id += 1);
   }
